@@ -91,7 +91,9 @@ def jksb(driver):
     logging.info("提交健康申报")
     
     # driver.find_element_by_xpath('//*[@id="form_command_bar"]/li[1]').click()
-    driver.find_element(By.XPATH, '//*[@id="form_command_bar"]/li[1]').click()
+    # driver.find_element(By.XPATH, '//*[@id="form_command_bar"]/li[1]').click()
+    element1=driver.find_element(By.XPATH, '//*[@id="form_command_bar"]/li[1]')
+    driver.execute_script("arguments[0].click();",element1)
     time.sleep(15)
 
     result=""

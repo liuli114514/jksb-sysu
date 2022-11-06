@@ -71,7 +71,7 @@ def login(driver,ocr):
         raise Exception('登陆失败')
 
 # 失败后随机 3-5s 后重试，最多 10 次
-@retry(wait_random_min=30000, wait_random_max=50000, stop_max_attempt_number=5)
+@retry(wait_random_min=3000, wait_random_max=5000, stop_max_attempt_number=5)
 def jksb(driver):
     logging.info('访问健康申报页面')
     driver.get("http://jksb.sysu.edu.cn/infoplus/form/XNYQSB/start")
@@ -91,8 +91,8 @@ def jksb(driver):
     logging.info("提交健康申报")
     
     # driver.find_element_by_xpath('//*[@id="form_command_bar"]/li[1]').click()
-    element1=driver.find_element_by_xpath('//*[@id="form_command_bar"]/li[1]')
-    driver.execute_script("arguments[0].click();",element1)
+    driver.find_element(By.XPATH, '//*[@id="form_command_bar"]/li[1]').click()
+    time.sleep(15)
 
     result=""
     try:
